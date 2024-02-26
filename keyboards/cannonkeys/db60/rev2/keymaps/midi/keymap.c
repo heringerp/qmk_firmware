@@ -28,10 +28,10 @@ enum layer_names {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT_60_ansi(
-    QK_GESC, MI_A1,    MI_C2,    KC_3,    KC_4,    KC_5,    KC_6,                 KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,   KC_BSPC,
-    KC_TAB,  MI_Bb1,   MI_Db2,    KC_E,    KC_R,    KC_T,    KC_Y,   KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC,  KC_BSLS,
-    KC_CAPS, MI_B1,    MI_D2,    KC_D,    KC_F,    KC_G,    KC_H,                 KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,           KC_ENT,
-    KC_LSFT, MI_C2,    MI_Eb2,    KC_C,    KC_V,    KC_B,    KC_N,                 KC_M,    KC_COMM, KC_DOT,  KC_SLSH,                    KC_RSFT,
+    MI_OCTD, MI_A1,   MI_C2,   MI_Eb2,  MI_Gb2,  MI_A2,   MI_C3,   MI_Eb3,  MI_Gb3,  MI_A3,   MI_C4,   MI_Gb4,  MI_A4,    MI_OCTU,
+    KC_TAB,  MI_Bb1,  MI_Db2,  MI_E2,   MI_G2,   MI_Bb2,  MI_Db3,  MI_E3,   MI_G3,   MI_Bb3,  MI_Db4,  MI_G4,   MI_Bb4,   KC_BSLS,
+    KC_CAPS, MI_B1,   MI_D2,   MI_F2,   MI_Ab2,  MI_B2,   MI_D3,   MI_F3,   MI_Ab3,  MI_B3,   MI_D4,   MI_Ab4,  MI_B4,
+    KC_LSFT, MI_C2,   MI_Eb2,  MI_Gb2,  MI_A2,   MI_C3,   MI_Eb3,  MI_Gb3,  MI_A3,   MI_C4,   MI_Eb4,  MI_A4,
     KC_LCTL, KC_LGUI, KC_LALT,                            KC_SPC,                                          KC_RALT, KC_RGUI, MO(_FN1), KC_RCTL
   ),
 
