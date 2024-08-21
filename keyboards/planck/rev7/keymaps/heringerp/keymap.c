@@ -18,7 +18,7 @@
 
 enum planck_layers { _COLEMAK, _LOWER, _RAISE, _ADJUST };
 
-enum planck_keycodes { COLEMAK = SAFE_RANGE, BACKLIT, };
+enum planck_keycodes { COLEMAK = SAFE_RANGE };
 
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
@@ -41,7 +41,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSPC,
     KC_ESC,  KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT,
     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT ,
-    BACKLIT, KC_LCTL, KC_LALT, KC_LGUI, LCTL_T(KC_SPC), LOWER, RAISE, OSM(MOD_LSFT), KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
+    KC_LCTL, KC_LGUI, KC_A, KC_LALT, LCTL_T(KC_SPC), LOWER, RAISE, OSM(MOD_LSFT), KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
 ),
 
 /* Lower
@@ -95,7 +95,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_ADJUST] = LAYOUT_planck_grid(
     _______, QK_BOOT, LGUI(KC_7), LGUI(KC_8), LGUI(KC_9), _______, _______, LGUI(KC_L), LGUI(KC_ENT), SGUI(KC_Q), _______, _______,
     _______, EE_CLR,  LGUI(KC_4), LGUI(KC_5), LGUI(KC_6), _______, _______, KC_LSFT,    LGUI(KC_P), SGUI(KC_P), _______, _______,
-    _______, AU_PREV, LGUI(KC_1), LGUI(KC_2), LGUI(KC_3), _______, _______,  _______, _______, _______, _______, _______,
+    _______, _______, LGUI(KC_1), LGUI(KC_2), LGUI(KC_3), _______, _______,  _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 )
 
@@ -111,25 +111,14 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 }
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case COLEMAK:
-            if (record->event.pressed) {
-                set_single_persistent_default_layer(_COLEMAK);
-            }
-            return false;
-            break;
-        case BACKLIT:
-            if (record->event.pressed) {
-                register_code(KC_RSFT);
-            } else {
-                unregister_code(KC_RSFT);
-            }
-            return false;
-            break;
-    }
-    return true;
-}
+#if defined(ENCODER_MAP_ENABLE)
+const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
+    [0] = { ENCODER_CCW_CW(KC_MS_WH_UP, KC_MS_WH_DOWN) },
+    [1] = { ENCODER_CCW_CW(KC_BRID, KC_BRIU) },
+    [2] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },
+    [3] = { ENCODER_CCW_CW(KC_RIGHT, KC_LEFT) },
+};
+#endif
 
 /* clang-format off */
 float melody[8][2][2] = {
