@@ -14,9 +14,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "info_config.h"
+#include "keycodes.h"
+#include "modifiers.h"
+#include "quantum_keycodes.h"
 #include QMK_KEYBOARD_H
 
-enum planck_layers { _COLEMAK, _LOWER, _RAISE, _ADJUST };
+enum planck_layers { _COLEMAK, _LOWER, _RAISE, _ADJUST, _FN };
 
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
@@ -47,10 +51,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_ADJUST] = LAYOUT_planck_grid(
     _______, QK_BOOT, LGUI(KC_7), LGUI(KC_8), LGUI(KC_9), _______, _______, LGUI(KC_L), LGUI(KC_ENT), SGUI(KC_Q), _______, _______,
-    _______, EE_CLR,  LGUI(KC_4), LGUI(KC_5), LGUI(KC_6), _______, _______, KC_LSFT,    LGUI(KC_P), SGUI(KC_P), _______, _______,
+    _______, EE_CLR,  LGUI(KC_4), LGUI(KC_5), LGUI(KC_6), _______, MO(_FN), KC_LSFT,    LGUI(KC_P), SGUI(KC_P), _______, _______,
     _______, _______, LGUI(KC_1), LGUI(KC_2), LGUI(KC_3), _______, _______,  _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
-)
+),
+
+[_FN] = LAYOUT_planck_grid(
+    _______, KC_F10, KC_F7, KC_F8, KC_F9, _______, _______, LCA(KC_F7), LCA(KC_F8), LCA(KC_F9), _______, _______,
+    _______, KC_F11, KC_F4, KC_F5, KC_F6, OSM(MOD_LCTL|MOD_LALT), _______, LCA(KC_F4),    LCA(KC_F5), LCA(KC_F6), _______, _______,
+    _______, KC_F12, KC_F1, KC_F2, KC_F3, _______, _______, LCA(KC_F1), LCA(KC_F2), LCA(KC_F3), _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+),
 
 };
 /* clang-format on */
@@ -65,5 +76,6 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [_LOWER] = { ENCODER_CCW_CW(KC_BRID, KC_BRIU) },
     [_RAISE] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },
     [_ADJUST] = { ENCODER_CCW_CW(KC_RIGHT, KC_LEFT) },
+    [_FN] = { ENCODER_CCW_CW(KC_RIGHT, KC_LEFT) },
 };
 #endif
