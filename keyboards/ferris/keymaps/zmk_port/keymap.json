@@ -19,7 +19,7 @@
       "KC_NO", "KC_TRNS", "KC_TRNS", "KC_NO"
     ],
     [
-      "KC_VOLU", "KC_AMPR", "KC_ASTR", "KC_PLUS", "KC_LPRN", "KC_RPRN", "KC_QUOT", "KC_DQUO", "KC_RALT", "KC_NO",
+      "KC_VOLU", "KC_AMPR", "KC_ASTR", "KC_PLUS", "KC_LPRN", "KC_RPRN", "KC_QUOT", "KC_DQUO", "KC_RALT", "LCTL(KC_BSPC)",
       "KC_MUTE", "KC_DLR", "KC_PERC", "KC_CIRC", "KC_LBRC", "KC_RBRC", "KC_MINS", "KC_EQL", "KC_GRV", "KC_NO",
       "KC_VOLD", "KC_EXLM", "KC_AT", "KC_HASH", "KC_LCBR", "KC_RCBR", "KC_UNDS", "KC_PIPE", "KC_TILD", "KC_BSLS",
       "KC_NO", "KC_TRNS", "KC_TRNS", "KC_NO"
