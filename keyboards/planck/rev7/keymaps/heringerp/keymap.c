@@ -22,6 +22,17 @@
 
 enum planck_layers { _COLEMAK, _LOWER, _RAISE, _ADJUST, _FN };
 
+enum {
+    TD_COMMA,
+    TD_DOT,
+};
+
+tap_dance_action_t tap_dance_actions[] = {
+    // Tap once for Escape, twice for Caps Lock
+    [TD_COMMA] = ACTION_TAP_DANCE_DOUBLE(KC_COMM, KC_SCLN),
+    [TD_DOT] = ACTION_TAP_DANCE_DOUBLE(KC_DOT, KC_COLN),
+};
+
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
 
@@ -29,10 +40,10 @@ enum planck_layers { _COLEMAK, _LOWER, _RAISE, _ADJUST, _FN };
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_COLEMAK] = LAYOUT_planck_grid(
-    KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSPC,
-    KC_ESC,  KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT,
-    KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT ,
-    KC_LCTL, KC_LGUI, KC_A, KC_LALT, LCTL_T(KC_SPC), LOWER, RAISE, OSM(MOD_LSFT), KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
+    _______,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y,    _______, _______,
+    _______,  KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    _______,
+    _______, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_K,    KC_H,    TD(TD_COMMA), TD(TD_DOT),  KC_SLSH, _______,
+    _______, _______, _______, _______, LCTL_T(KC_SPC), LOWER, RAISE, OSM(MOD_LSFT), _______, _______, _______,   _______
 ),
 
 [_LOWER] = LAYOUT_planck_grid(
