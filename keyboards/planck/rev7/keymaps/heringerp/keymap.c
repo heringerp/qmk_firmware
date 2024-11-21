@@ -35,21 +35,23 @@ tap_dance_action_t tap_dance_actions[] = {
 
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
+#define CSPAC LCTL_T(KC_SPC)
+#define OLSFT OSM(MOD_LSFT)
 
 /* clang-format off */
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_COLEMAK] = LAYOUT_planck_grid(
-    _______,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y,    _______, _______,
-    _______,  KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    _______,
-    _______, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_K,    KC_H,    TD(TD_COMMA), TD(TD_DOT),  KC_SLSH, _______,
-    _______, _______, _______, _______, LCTL_T(KC_SPC), LOWER, RAISE, OSM(MOD_LSFT), _______, _______, _______,   _______
+    _______, KC_Q,    KC_W,    KC_F,    KC_P,  KC_B,  KC_J,  KC_L,  KC_U,         KC_Y,       _______, _______,
+    _______, KC_A,    KC_R,    KC_S,    KC_T,  KC_G,  KC_M,  KC_N,  KC_E,         KC_I,       KC_O,    _______,
+    _______, KC_Z,    KC_X,    KC_C,    KC_D,  KC_V,  KC_K,  KC_H,  TD(TD_COMMA), TD(TD_DOT), KC_SLSH, _______,
+    _______, _______, _______, _______, CSPAC, LOWER, RAISE, OLSFT, _______,      _______,    _______, _______
 ),
 
 [_LOWER] = LAYOUT_planck_grid(
     _______, KC_BRIU, KC_7,    KC_8,    KC_9,    KC_TAB,  KC_INS,  KC_PGDN, KC_PGUP, KC_DEL,  KC_BSPC, _______,
     _______, KC_BRID, KC_4,    KC_5,    KC_6,    KC_ESC,  KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT, KC_ENT, _______,
-    _______, KC_0,    KC_1,    KC_2,    KC_3,    KC_LSFT, KC_HOME, KC_PSCR, LSFT(KC_PSCR), KC_END, _______,  _______,
+    _______, KC_0,    KC_1,    KC_2,    KC_3,    KC_LSFT, KC_HOME, KC_PSCR, LSFT(KC_PSCR), KC_END, LCTL(KC_ENT),  _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
 
