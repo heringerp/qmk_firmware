@@ -47,3 +47,4 @@
 #define RGB_MATRIX_DEFAULT_VAL RGB_MATRIX_MAXIMUM_BRIGHTNESS // Sets the default brightness value, if none has been set
 #define TAPPING_TERM 175
 #define TAPPING_TERM_PER_KEY
+#define LEADER_TIMEOUT 300
