@@ -35,6 +35,10 @@ void leader_end_user(void) {
     if (leader_sequence_one_key(KC_F)) {
         // Leader, f => Types the below string
         SEND_STRING("QMK is awesome.");
+    } else if (leader_sequence_one_key(KC_DOT)) {
+        tap_code16(KC_COLN);
+    } else if (leader_sequence_one_key(KC_COMM)) {
+        tap_code16(KC_SCLN);
     } else if (leader_sequence_two_keys(KC_D, KC_D)) {
         // Leader, d, d => Ctrl+A, Ctrl+C
         SEND_STRING(SS_LCTL("a") SS_LCTL("c"));
@@ -49,8 +53,8 @@ void leader_end_user(void) {
 
 tap_dance_action_t tap_dance_actions[] = {
     // Tap once for Escape, twice for Caps Lock
-    [TD_COMMA] = ACTION_TAP_DANCE_DOUBLE(KC_COMM, KC_SCLN),
-    [TD_DOT] = ACTION_TAP_DANCE_DOUBLE(KC_DOT, KC_COLN),
+    /*[TD_COMMA] = ACTION_TAP_DANCE_DOUBLE(KC_COMM, KC_SCLN),*/
+    /*[TD_DOT] = ACTION_TAP_DANCE_DOUBLE(KC_DOT, KC_COLN),*/
 };
 
 #define LOWER MO(_LOWER)
@@ -64,7 +68,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_COLEMAK] = LAYOUT_planck_grid(
     _______, KC_Q,    KC_W,    KC_F,    KC_P,  KC_B,  KC_J,  KC_L,  KC_U,         KC_Y,       QK_LEAD, _______,
     _______, KC_A,    KC_R,    KC_S,    KC_T,  KC_G,  KC_M,  KC_N,  KC_E,         KC_I,       KC_O,    _______,
-    _______, KC_Z,    KC_X,    KC_C,    KC_D,  KC_V,  KC_K,  KC_H,  TD(TD_COMMA), TD(TD_DOT), KC_SLSH, _______,
+    _______, KC_Z,    KC_X,    KC_C,    KC_D,  KC_V,  KC_K,  KC_H,  KC_COMM, KC_DOT, KC_SLSH, _______,
     _______, _______, _______, _______, CSPAC, LOWER, RAISE, OLSFT, _______,      _______,    _______, _______
 ),
 

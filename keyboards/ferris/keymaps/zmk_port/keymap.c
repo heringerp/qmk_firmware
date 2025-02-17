@@ -18,12 +18,36 @@ tap_dance_action_t tap_dance_actions[] = {
     [TD_DOT] = ACTION_TAP_DANCE_DOUBLE(KC_DOT, KC_COLN),
 };
 
+void leader_start_user(void) {
+    // Do something when the leader key is pressed
+}
+
+void leader_end_user(void) {
+    if (leader_sequence_one_key(KC_F)) {
+        // Leader, f => Types the below string
+        SEND_STRING("QMK is awesome.");
+    } else if (leader_sequence_one_key(KC_DOT)) {
+        tap_code16(KC_COLN);
+    } else if (leader_sequence_one_key(KC_COMM)) {
+        tap_code16(KC_SCLN);
+    } else if (leader_sequence_two_keys(KC_D, KC_D)) {
+        // Leader, d, d => Ctrl+A, Ctrl+C
+        SEND_STRING(SS_LCTL("a") SS_LCTL("c"));
+    } else if (leader_sequence_three_keys(KC_D, KC_D, KC_S)) {
+        // Leader, d, d, s => Types the below string
+        SEND_STRING("https://start.duckduckgo.com\n");
+    } else if (leader_sequence_two_keys(KC_A, KC_S)) {
+        // Leader, a, s => GUI+S
+        tap_code16(LGUI(KC_S));
+    }
+}
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [0] = LAYOUT_split_3x5_2(
-    KC_Q,   KC_W,   KC_F,   KC_P,   KC_B,   KC_J,   KC_L,   KC_U,           KC_Y,       KC_NO,
+    KC_Q,   KC_W,   KC_F,   KC_P,   KC_B,   KC_J,   KC_L,   KC_U,           KC_Y,       QK_LEAD,
     KC_A,   KC_R,   KC_S,   KC_T,   KC_G,   KC_M,   KC_N,   KC_E,           KC_I,       KC_O,
-    KC_Z,   KC_X,   KC_C,   KC_D,   KC_V,   KC_K,   KC_H,   TD(TD_COMMA), TD(TD_DOT),   KC_SLSH,
+    KC_Z,   KC_X,   KC_C,   KC_D,   KC_V,   KC_K,   KC_H,   KC_COMM, KC_DOT,   KC_SLSH,
                             LCTL_T(KC_SPC), TL_LOWR, TL_UPPR, OSM(MOD_LSFT)
 ),
 
